@@ -4,6 +4,8 @@
  */
 package concursopr;
 
+import view.MainWindow;
+
 /**
  *
  * @author lcast
@@ -15,6 +17,7 @@ public class ConcursoPR {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new MainWindow();
     }
     
 }
