@@ -56,7 +56,7 @@ public class PreguntaDAO {
         try {
             if(conn == null)
                 conn = ConnectionDB.getConnection();
-            String sql          = "SELECT pre_id, pre_cat_id, pre_enun FROM pregunta WHERE categoria.cat_id=?;";
+            String sql          = "SELECT pre_id, pre_cat_id, pre_enun FROM pregunta WHERE pregunta.pre_cat_id=?;";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, categoria);
             ResultSet result    = statement.executeQuery();
@@ -156,7 +156,7 @@ public class PreguntaDAO {
             statement.setInt(1, preID);
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                JOptionPane.showMessageDialog(null, "La prefunta fue borrada exitosamente !");
+                JOptionPane.showMessageDialog(null, "La pregunta fue borrada exitosamente !");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : "
