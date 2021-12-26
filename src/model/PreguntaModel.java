@@ -49,5 +49,9 @@ public class PreguntaModel {
         this.preEnun = preEnun;
     }
    
+    public Object[] toArray(){
+        Object[] data = {preID, preEnun, "", ""};
+        return data;
+    }
     
 }
