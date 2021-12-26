@@ -4,7 +4,11 @@
  */
 package view;
 
+import controllers.InitialDataConfig;
 import java.awt.Container;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import model.CategoriaModel;
 
 /**
  *
@@ -30,6 +34,7 @@ public class Configurar extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel2 = new javax.swing.JLabel();
+        InitialDataConfig initialDataConfig = new InitialDataConfig();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -51,12 +56,8 @@ public class Configurar extends javax.swing.JPanel {
         add(jLabel2, gridBagConstraints);
 
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nivel 1", "Nivel 2", "Nivel 3", "Nivel 4", "Nivel 5" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray()));
+        jComboBox1.setSelectedIndex(0);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -130,10 +131,6 @@ public class Configurar extends javax.swing.JPanel {
         getAccessibleContext().setAccessibleParent(jButton1);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
         this.setVisible(false);
@@ -151,4 +148,5 @@ public class Configurar extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    // Se inicializan los datos
 }
