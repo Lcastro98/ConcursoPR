@@ -4,9 +4,11 @@
  */
 package view;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.UIManager;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
@@ -14,6 +16,19 @@ import javax.swing.JFrame;
  * @author lcast
  */
 public class MainWindow extends JFrame {
+ 
+    // creamos un objeto de la clase GridBagLayout este sera nuestro layout el cual determinara 
+    // el orden en que se distribuiran los componentes
+    GridBagLayout layout = new GridBagLayout();
+  
+    // creamos un objeto de la clase GridBagContraints 
+    // en el cual se guarda información de cómo y dónde añadir el componente. 
+    GridBagConstraints constraint = new GridBagConstraints();
+    
+    // creamos tres objetos de la clase JPanel
+    Home home = new  Home();
+    Configurar configurar = new Configurar();
+
     public MainWindow(){
         initComponents();
     }
@@ -21,25 +36,35 @@ public class MainWindow extends JFrame {
     private void initComponents(){
         setTitle("Concurso - Preguntas y respuestas");
         
+        /*
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } 
         catch (Exception e) {
             e.printStackTrace();
         }
+        */
         
-        Home home = new Home();
-        setContentPane(home);
-//        add(new ControlsPanel(resultsPanel));
-        
-        setSize(1020, 720);
-        
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize  = getSize();
-        setLocation((screenSize.width  - frameSize.width)  / 2, 
-                    (screenSize.height - frameSize.height) / 2);
-        
+        this.setSize(1020, 720); //asignamos ancho y alto
+        setLocationRelativeTo(null); //centramos la pantalla
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+        
+        this.setLayout(layout);
+  
+                 // agregamos los respectivos contenedores y componentes al JFrame
+        constraint.gridx=0;
+        constraint.gridy=0;
+        constraint.gridwidth=2;
+        constraint.gridheight=1;
+        constraint.weightx=1.0;
+        constraint.weighty=1.0;
+        constraint.anchor=GridBagConstraints.CENTER;
+        constraint.fill= GridBagConstraints.BOTH;
+        this.add(home, constraint);
+        this.add(configurar, constraint);
+
+        home.setVisible(true);
+        configurar.setVisible(false);
+
     }
 }
