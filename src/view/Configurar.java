@@ -55,7 +55,7 @@ public class Configurar extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         OptionsGroup = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
-        InitialDataConfig initialDataConfig = new InitialDataConfig();
+        InitialDataConfig initialDataConfig = new InitialDataConfig(1);
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -217,6 +217,11 @@ public class Configurar extends javax.swing.JPanel {
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         jComboBox1.setModel(new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray(new CategoriaModel[initialDataConfig.getCategorias().size()])));
         jComboBox1.setSelectedIndex(0);
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -336,19 +341,19 @@ public class Configurar extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "El enunciado de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
             lOk = false;
         }
-        if (jTextField2.getText().isEmpty()){
+        if (jTextField2.getText().isEmpty() && lOk){
             JOptionPane.showMessageDialog(this, "La primera opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
             lOk = false;
         }
-        if (jTextField3.getText().isEmpty()){
+        if (jTextField3.getText().isEmpty() && lOk){
             JOptionPane.showMessageDialog(this, "La segunda opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
             lOk = false;
         }
-        if (jTextField4.getText().isEmpty()){
+        if (jTextField4.getText().isEmpty() && lOk){
             JOptionPane.showMessageDialog(this, "La tercera opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
             lOk = false;
         }
-        if (jTextField6.getText().isEmpty()){
+        if (jTextField6.getText().isEmpty() && lOk){
             JOptionPane.showMessageDialog(this, "La cuarta opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
             lOk = false;
         }
@@ -375,6 +380,30 @@ public class Configurar extends javax.swing.JPanel {
             AgregarP.dispose();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        CategoriaModel categoria = (CategoriaModel) jComboBox1.getSelectedItem();
+        int catId = categoria.getCatID();
+        InitialDataConfig initialData = new InitialDataConfig(catId);
+        ArrayList<PreguntaModel> preguntas = initialData.getPreguntas();
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+            }
+        ));
+        String[] headers = {"Id", "Enunciado", "Modificar", "Eliminar"};
+        this.jTable1.removeAll();
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.setColumnIdentifiers(headers);
+        this.jTable1.setModel(tableModel);
+        for(int i=0; i<preguntas.size(); i++){
+            tableModel.addRow(preguntas.get(i).toArray());
+        }
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+            
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

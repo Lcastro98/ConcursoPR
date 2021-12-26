@@ -21,12 +21,12 @@ public class InitialDataConfig {
     private ArrayList<PreguntaModel> preguntas = null;
     private ArrayList<OpcionesModel> opciones = null;
 
-    public InitialDataConfig() {
+    public InitialDataConfig(Integer catID) {
         CategoriaDAO categoriaDAO = new CategoriaDAO();
         this.categorias = categoriaDAO.obtenerCategorias();
 
         PreguntaDAO preguntaDAO = new PreguntaDAO();
-        this.preguntas = preguntaDAO.obtenerPreguntasxCat(this.categorias.get(0).getCatID());
+        this.preguntas = preguntaDAO.obtenerPreguntasxCat(catID);
         
         OpcionesDAO opcionesDAO = new OpcionesDAO();
         if (this.preguntas.size() > 0) {
