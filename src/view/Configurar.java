@@ -116,13 +116,16 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(42, 29, 0, 0);
         add(jLabel1, gridBagConstraints);
 
+        jButton2.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
         jButton2.setText("Atrás");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.BELOW_BASELINE_TRAILING;
+        add(jButton2, gridBagConstraints);
 
         getAccessibleContext().setAccessibleParent(jButton1);
     }// </editor-fold>//GEN-END:initComponents
