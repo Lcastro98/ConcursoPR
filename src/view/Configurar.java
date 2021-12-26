@@ -10,6 +10,7 @@ import controllers.InitialDataConfig;
 import java.awt.Container;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.CategoriaModel;
 import model.OpcionesModel;
@@ -330,22 +331,49 @@ public class Configurar extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        CategoriaModel categoria = (CategoriaModel) jComboBox1.getSelectedItem();
-        int catId = categoria.getCatID();
-        PreguntaModel pregunta = new PreguntaModel(0, catId, jTextField1.getText());
-        PreguntaDAO preguntaDAO = new PreguntaDAO();
-        pregunta.setPreID(preguntaDAO.agregarPregunta(pregunta));
-        // se insertan las cuatro opciones
-        OpcionesDAO opcionesDAO = new OpcionesDAO();
-        OpcionesModel opciones1 = new OpcionesModel(0, pregunta.getPreID(), jTextField2.getText(), jRadioButton1.isSelected());
-        opcionesDAO.agregarOpcion(opciones1);
-        OpcionesModel opciones2 = new OpcionesModel(0, pregunta.getPreID(), jTextField3.getText(), jRadioButton2.isSelected());
-        opcionesDAO.agregarOpcion(opciones2);
-        OpcionesModel opciones3 = new OpcionesModel(0, pregunta.getPreID(), jTextField4.getText(), jRadioButton3.isSelected());
-        opcionesDAO.agregarOpcion(opciones3);
-        OpcionesModel opciones4 = new OpcionesModel(0, pregunta.getPreID(), jTextField6.getText(), jRadioButton4.isSelected());
-        opcionesDAO.agregarOpcion(opciones4);
-        AgregarP.dispose();
+        Boolean lOk = true;
+        if (jTextField1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El enunciado de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
+            lOk = false;
+        }
+        if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La primera opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
+            lOk = false;
+        }
+        if (jTextField3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La segunda opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
+            lOk = false;
+        }
+        if (jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La tercera opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
+            lOk = false;
+        }
+        if (jTextField6.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "La cuarta opción de la pregunta, NO puede dejarse en blanco", "Error!", JOptionPane.ERROR_MESSAGE);
+            lOk = false;
+        }
+        if (!((jRadioButton1.isSelected()) || (jRadioButton2.isSelected()) || (jRadioButton3.isSelected()) || (jRadioButton4.isSelected()))) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar cual es la opción verdadera", "Error!", JOptionPane.ERROR_MESSAGE);
+            lOk = false;
+        }
+        if (lOk) {
+            CategoriaModel categoria = (CategoriaModel) jComboBox1.getSelectedItem();
+            int catId = categoria.getCatID();
+            PreguntaModel pregunta = new PreguntaModel(0, catId, jTextField1.getText());
+            PreguntaDAO preguntaDAO = new PreguntaDAO();
+            pregunta.setPreID(preguntaDAO.agregarPregunta(pregunta));
+            // se insertan las cuatro opciones
+            OpcionesDAO opcionesDAO = new OpcionesDAO();
+            OpcionesModel opciones1 = new OpcionesModel(0, pregunta.getPreID(), jTextField2.getText(), jRadioButton1.isSelected());
+            opcionesDAO.agregarOpcion(opciones1);
+            OpcionesModel opciones2 = new OpcionesModel(0, pregunta.getPreID(), jTextField3.getText(), jRadioButton2.isSelected());
+            opcionesDAO.agregarOpcion(opciones2);
+            OpcionesModel opciones3 = new OpcionesModel(0, pregunta.getPreID(), jTextField4.getText(), jRadioButton3.isSelected());
+            opcionesDAO.agregarOpcion(opciones3);
+            OpcionesModel opciones4 = new OpcionesModel(0, pregunta.getPreID(), jTextField6.getText(), jRadioButton4.isSelected());
+            opcionesDAO.agregarOpcion(opciones4);
+            AgregarP.dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
