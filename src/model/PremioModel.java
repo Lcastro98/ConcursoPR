@@ -11,19 +11,19 @@ package model;
 public class PremioModel {
     private int premioID;
     private int premioRondaID;
-    private int premiopunt;
+    private int premioPunt;
 
     
     /**
      * Constructor para manejo interno de la tabla
      * @param premioID
      * @param premioRondaID
-     * @param premiopunt 
+     * @param premioPunt 
      */
-    public PremioModel(int premioID, int premioRondaID, int premiopunt) {
+    public PremioModel(int premioID, int premioRondaID, int premioPunt) {
         this.premioID = premioID;
         this.premioRondaID = premioRondaID;
-        this.premiopunt = premiopunt;
+        this.premioPunt = premioPunt;
     }
 
     public int getPremioID() {
@@ -42,12 +42,12 @@ public class PremioModel {
         this.premioRondaID = premioRondaID;
     }
 
-    public int getPremiopunt() {
-        return premiopunt;
+    public int getPremioPunt() {
+        return premioPunt;
     }
 
-    public void setPremiopunt(int premiopunt) {
-        this.premiopunt = premiopunt;
+    public void setPremioPunt(int premioPunt) {
+        this.premioPunt = premioPunt;
     }
 
 }
