@@ -103,24 +103,30 @@ public class PreguntaDAO {
      * 
      * @param pregunta 
      */
-    public void agregarPregunta(PreguntaModel pregunta){
+    public int agregarPregunta(PreguntaModel pregunta){
+        int autoid = 0;
         try {
             if(conn == null)
                 conn = ConnectionDB.getConnection();
             
             String sql = "INSERT INTO pregunta(pre_id, pre_cat_id, pre_enun) VALUES (?, ?, ?);";
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, pregunta.getPreID());
             statement.setInt(2, pregunta.getPreCatID());
             statement.setString(3, pregunta.getPreEnun());
             
             int rowsInserted = statement.executeUpdate();
-            if(rowsInserted > 0) 
+            if(rowsInserted > 0) {
                 JOptionPane.showMessageDialog(null, "La pregunta fue agregada exitosamente !");
+                ResultSet rs = statement.getGeneratedKeys();
+                rs.last();
+                autoid = rs.getInt(1);
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : " + ex.getErrorCode() 
                                         + "\nError :" + ex.getMessage());
         }
+        return autoid;
     }
     
     /**

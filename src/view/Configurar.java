@@ -4,12 +4,15 @@
  */
 package view;
 
+import access.OpcionesDAO;
+import access.PreguntaDAO;
 import controllers.InitialDataConfig;
 import java.awt.Container;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.CategoriaModel;
+import model.OpcionesModel;
 import model.PreguntaModel;
 
 /**
@@ -81,6 +84,8 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(7, 12, 0, 0);
         AgregarP.getContentPane().add(jLabel4, gridBagConstraints);
 
+        jTextField1.setToolTipText("Por favor escriba su pregunta.");
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -183,6 +188,11 @@ public class Configurar extends javax.swing.JPanel {
         AgregarP.getContentPane().add(jTextField6, gridBagConstraints);
 
         jButton3.setText("Guardar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 10;
@@ -317,6 +327,26 @@ public class Configurar extends javax.swing.JPanel {
         AgregarP.setLocationRelativeTo(null);
         AgregarP.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        CategoriaModel categoria = (CategoriaModel) jComboBox1.getSelectedItem();
+        int catId = categoria.getCatID();
+        PreguntaModel pregunta = new PreguntaModel(0, catId, jTextField1.getText());
+        PreguntaDAO preguntaDAO = new PreguntaDAO();
+        pregunta.setPreID(preguntaDAO.agregarPregunta(pregunta));
+        // se insertan las cuatro opciones
+        OpcionesDAO opcionesDAO = new OpcionesDAO();
+        OpcionesModel opciones1 = new OpcionesModel(0, pregunta.getPreID(), jTextField2.getText(), jRadioButton1.isSelected());
+        opcionesDAO.agregarOpcion(opciones1);
+        OpcionesModel opciones2 = new OpcionesModel(0, pregunta.getPreID(), jTextField3.getText(), jRadioButton2.isSelected());
+        opcionesDAO.agregarOpcion(opciones2);
+        OpcionesModel opciones3 = new OpcionesModel(0, pregunta.getPreID(), jTextField4.getText(), jRadioButton3.isSelected());
+        opcionesDAO.agregarOpcion(opciones3);
+        OpcionesModel opciones4 = new OpcionesModel(0, pregunta.getPreID(), jTextField6.getText(), jRadioButton4.isSelected());
+        opcionesDAO.agregarOpcion(opciones4);
+        AgregarP.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

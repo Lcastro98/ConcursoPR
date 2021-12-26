@@ -5,9 +5,11 @@
 package controllers;
 
 import access.CategoriaDAO;
+import access.OpcionesDAO;
 import access.PreguntaDAO;
 import java.util.ArrayList;
 import model.CategoriaModel;
+import model.OpcionesModel;
 import model.PreguntaModel;
 
 /**
@@ -17,15 +19,20 @@ import model.PreguntaModel;
 public class InitialDataConfig {
     private ArrayList<CategoriaModel> categorias = null;
     private ArrayList<PreguntaModel> preguntas = null;
+    private ArrayList<OpcionesModel> opciones = null;
 
     public InitialDataConfig() {
         CategoriaDAO categoriaDAO = new CategoriaDAO();
         this.categorias = categoriaDAO.obtenerCategorias();
-        this.categorias.add(0, new CategoriaModel(-1, "Todas las Categorias"));
 
         PreguntaDAO preguntaDAO = new PreguntaDAO();
-        this.preguntas = preguntaDAO.obtenerPreguntas();
+        this.preguntas = preguntaDAO.obtenerPreguntasxCat(this.categorias.get(0).getCatID());
         
+        OpcionesDAO opcionesDAO = new OpcionesDAO();
+        if (this.preguntas.size() > 0) {
+            this.opciones = opcionesDAO.obtenerOpcionesxPre(this.preguntas.get(0).getPreID());
+        }
+       
     }
 
     public ArrayList<CategoriaModel> getCategorias() {
@@ -34,6 +41,10 @@ public class InitialDataConfig {
 
     public ArrayList<PreguntaModel> getPreguntas() {
         return preguntas;
+    }
+
+    public ArrayList<OpcionesModel> getOpciones() {
+        return opciones;
     }
 
 }
