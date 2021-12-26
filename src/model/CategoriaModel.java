@@ -39,5 +39,9 @@ public class CategoriaModel {
         this.catNom = catNom;
     }
     
+    @Override
+    public String toString() {
+        return this.catNom;
+    }
     
 }

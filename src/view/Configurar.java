@@ -56,7 +56,7 @@ public class Configurar extends javax.swing.JPanel {
         add(jLabel2, gridBagConstraints);
 
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        jComboBox1.setModel(new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray()));
+        jComboBox1.setModel(new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray(new CategoriaModel[initialDataConfig.getCategorias().size()])));
         jComboBox1.setSelectedIndex(0);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

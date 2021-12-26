@@ -46,7 +46,7 @@
           <Font name="Microsoft JhengHei UI" size="14" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="jComboBox1.setSelectedIndex(0);">
-          <Connection code="new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray())" type="code"/>
+          <Connection code="new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray(new CategoriaModel[initialDataConfig.getCategorias().size()]))" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
