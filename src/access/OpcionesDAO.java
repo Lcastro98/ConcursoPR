@@ -118,7 +118,7 @@ public class OpcionesDAO {
             
             int rowsInserted = statement.executeUpdate();
             if(rowsInserted > 0) 
-                JOptionPane.showMessageDialog(null, "El registro fue agregado exitosamente !");
+                rowsInserted = rowsInserted;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : " + ex.getErrorCode() 
                                         + "\nError :" + ex.getMessage());
@@ -142,7 +142,7 @@ public class OpcionesDAO {
             
             int rowsInserted = statement.executeUpdate();
             if(rowsInserted > 0) 
-                JOptionPane.showMessageDialog(null, "El registro fue actualizado exitosamente !");
+                rowsInserted = rowsInserted;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : " + ex.getErrorCode() 
                                         + "\nError :" + ex.getMessage());
@@ -159,7 +159,7 @@ public class OpcionesDAO {
             statement.setInt(1, opID);
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                JOptionPane.showMessageDialog(null, "El registro fue borrado exitosamente !");
+                rowsDeleted = rowsDeleted;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : "

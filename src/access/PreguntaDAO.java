@@ -117,7 +117,6 @@ public class PreguntaDAO {
             
             int rowsInserted = statement.executeUpdate();
             if(rowsInserted > 0) {
-                JOptionPane.showMessageDialog(null, "La pregunta fue agregada exitosamente !");
                 ResultSet rs = statement.getGeneratedKeys();
                 rs.last();
                 autoid = rs.getInt(1);
@@ -144,8 +143,8 @@ public class PreguntaDAO {
             statement.setInt(2, pregunta.getPreID());
             
             int rowsInserted = statement.executeUpdate();
-            if(rowsInserted > 0) 
-                JOptionPane.showMessageDialog(null, "La pregunta fue actualizada exitosamente !");
+            if(rowsInserted > 0)
+                rowsInserted = rowsInserted;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : " + ex.getErrorCode() 
                                         + "\nError :" + ex.getMessage());
@@ -162,7 +161,7 @@ public class PreguntaDAO {
             statement.setInt(1, preID);
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                JOptionPane.showMessageDialog(null, "La pregunta fue borrada exitosamente !");
+                rowsDeleted = rowsDeleted;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : "
