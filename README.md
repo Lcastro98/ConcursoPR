@@ -32,4 +32,5 @@ $ git clone https://github.com/Lcastro98/ConcursoPR.git
 
 ### A tener en cuenta
 - Se requiere tener la base de datos creada de manera local para que el programa pueda almacenar y usar los datos. En la carpeta utils están los archivos sql para la creación de las tablas.
-- Agregar al proyecto las librerias json-simple-1.1.1.jar y mysql-connector-java-8.0.26.jar que se encuentran en la carpeta libs.
+- Agregar al proyecto en Netbeans las librerias json-simple-1.1.1.jar y mysql-connector-java-8.0.26.jar que se encuentran en la carpeta libs.
+- Asegúrese que el archivo db_credentials.json ubicado en el paquete utils tenga sus credenciales del workbench para poder realizar la conexión a la base de datos.
