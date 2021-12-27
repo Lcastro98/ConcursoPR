@@ -279,7 +279,7 @@ public class Configurar extends javax.swing.JPanel {
                         PreguntaDAO pregunta = new PreguntaDAO();
                         pregunta.eliminarPregunta(preID);
                     };
-                    jTable1.revalidate();
+                    refreshTable();
                 }
             }
         );
@@ -438,14 +438,13 @@ public class Configurar extends javax.swing.JPanel {
             opcionesDAO.agregarOpcion(opciones3);
             OpcionesModel opciones4 = new OpcionesModel(0, pregunta.getPreID(), jTextField6.getText(), jRadioButton4.isSelected());
             opcionesDAO.agregarOpcion(opciones4);
-            jTable1.revalidate();
+            refreshTable();
             AgregarP.dispose();
 
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        // TODO add your handling code here:
+    private void refreshTable() {
         CategoriaModel categoria = (CategoriaModel) jComboBox1.getSelectedItem();
         int catId = categoria.getCatID();
         InitialDataConfig initialData = new InitialDataConfig(catId);
@@ -482,7 +481,12 @@ public class Configurar extends javax.swing.JPanel {
             }
         );
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-            
+
+    }
+    
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        refreshTable();
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
