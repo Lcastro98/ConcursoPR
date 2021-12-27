@@ -7,11 +7,19 @@ package view;
 import access.OpcionesDAO;
 import access.PreguntaDAO;
 import controllers.InitialDataConfig;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import model.CategoriaModel;
 import model.OpcionesModel;
 import model.PreguntaModel;
@@ -22,6 +30,7 @@ import model.PreguntaModel;
  */
 public class Configurar extends javax.swing.JPanel {
 
+    JButton bBorrar = new JButton();
     /**
      * Creates new form Configurar
      */
@@ -242,7 +251,7 @@ public class Configurar extends javax.swing.JPanel {
 
             }
         ));
-        String[] headers = {"Id", "Enunciado", "Modificar", "Eliminar"};
+        String[] headers = {"Id", "Enunciado", "Eliminar"};
         this.jTable1.removeAll();
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.setColumnIdentifiers(headers);
@@ -250,6 +259,30 @@ public class Configurar extends javax.swing.JPanel {
         for(int i=0; i<preguntas.size(); i++){
             tableModel.addRow(preguntas.get(i).toArray());
         }
+        jTable1.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox()));
+        jTable1.setRowHeight(40);
+
+        bBorrar.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                    if (JOptionPane.showConfirmDialog(null,"Desea eliminar esta pregunta?","Mensaje del Sistema",JOptionPane.YES_NO_OPTION)==0) {
+                        int preID = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                        OpcionesDAO opcion = new OpcionesDAO();
+                        ArrayList<OpcionesModel> opcionespre = opcion.obtenerOpcionesxPre(preID);
+                        if (opcionespre.size() > 0) {
+                            for (int i = 0; i < opcionespre.size(); ++i) {
+                                int opId = opcionespre.get(i).getOpID();
+                                opcion.eliminarOpcion(opId);
+                            }
+                        }
+                        PreguntaDAO pregunta = new PreguntaDAO();
+                        pregunta.eliminarPregunta(preID);
+                    };
+                    jTable1.revalidate();
+                }
+            }
+        );
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -308,6 +341,34 @@ public class Configurar extends javax.swing.JPanel {
         getAccessibleContext().setAccessibleParent(jButton1);
     }// </editor-fold>//GEN-END:initComponents
 
+    class ButtonRenderer extends JButton implements TableCellRenderer {
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+        public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "Borrar" : value.toString());
+            return this;
+        }
+    }
+
+    class ButtonEditor extends DefaultCellEditor {
+        private String label;
+
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            label = (value == null) ? "Borrar" : value.toString();
+            bBorrar.setText(label);
+            return bBorrar;
+        }
+
+        public Object getCellEditorValue() {
+            return new String(label);
+        }
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
         this.setVisible(false);
@@ -377,7 +438,9 @@ public class Configurar extends javax.swing.JPanel {
             opcionesDAO.agregarOpcion(opciones3);
             OpcionesModel opciones4 = new OpcionesModel(0, pregunta.getPreID(), jTextField6.getText(), jRadioButton4.isSelected());
             opcionesDAO.agregarOpcion(opciones4);
+            jTable1.revalidate();
             AgregarP.dispose();
+
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -387,13 +450,7 @@ public class Configurar extends javax.swing.JPanel {
         int catId = categoria.getCatID();
         InitialDataConfig initialData = new InitialDataConfig(catId);
         ArrayList<PreguntaModel> preguntas = initialData.getPreguntas();
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-            },
-            new String [] {
-            }
-        ));
-        String[] headers = {"Id", "Enunciado", "Modificar", "Eliminar"};
+        String[] headers = {"Id", "Enunciado", "Eliminar"};
         this.jTable1.removeAll();
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.setColumnIdentifiers(headers);
@@ -401,6 +458,29 @@ public class Configurar extends javax.swing.JPanel {
         for(int i=0; i<preguntas.size(); i++){
             tableModel.addRow(preguntas.get(i).toArray());
         }
+        jTable1.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
+        jTable1.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox()));
+        jTable1.setRowHeight(40);
+
+        bBorrar.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent event) {
+                    if (JOptionPane.showConfirmDialog(null,"Desea eliminar esta pregunta?","Mensaje del Sistema",JOptionPane.YES_NO_OPTION)==0) {
+                        int preID = (int) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+                        OpcionesDAO opcion = new OpcionesDAO();
+                        ArrayList<OpcionesModel> opcionespre = opcion.obtenerOpcionesxPre(preID);
+                        if (opcionespre.size() > 0) {
+                            for (int i = 0; i < opcionespre.size(); ++i) {
+                                int opId = opcionespre.get(i).getOpID();
+                                opcion.eliminarOpcion(opId);
+                            }
+                        }
+                        PreguntaDAO pregunta = new PreguntaDAO();
+                        pregunta.eliminarPregunta(preID);
+                    };
+                }
+            }
+        );
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
             
     }//GEN-LAST:event_jComboBox1ItemStateChanged
