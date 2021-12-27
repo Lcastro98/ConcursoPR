@@ -44,7 +44,7 @@ public class ConnectionDB {
             String dbURL = "jdbc:mysql://"+host+":"+port+"/"+schema_name;
             
             conn = DriverManager.getConnection(dbURL, username, password);
-/*            if( conn != null )                 
+            /*if( conn != null )                 
                 System.out.println ( "Conectado" );*/
         } 
         catch( SQLException | FileNotFoundException ex ) {

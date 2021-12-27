@@ -53,7 +53,7 @@ public class Home extends JPanel{
         setPreferredSize(new java.awt.Dimension(1020, 720));
         setLayout(new java.awt.GridBagLayout());
 
-        btn_conf.setBackground(java.awt.SystemColor.activeCaption);
+        btn_conf.setBackground(java.awt.SystemColor.inactiveCaption);
         btn_conf.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         btn_conf.setText("Configurar");
         btn_conf.setPreferredSize(new java.awt.Dimension(500, 50));
@@ -77,7 +77,7 @@ public class Home extends JPanel{
         gridBagConstraints.insets = new java.awt.Insets(126, 254, 0, 266);
         add(btn_conf, gridBagConstraints);
 
-        btn_jugar.setBackground(java.awt.SystemColor.activeCaption);
+        btn_jugar.setBackground(java.awt.SystemColor.inactiveCaption);
         btn_jugar.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         btn_jugar.setText("Jugar");
         btn_jugar.setPreferredSize(new java.awt.Dimension(500, 50));
@@ -97,6 +97,7 @@ public class Home extends JPanel{
         add(btn_jugar, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¡Bienvenido!");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

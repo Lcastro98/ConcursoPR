@@ -72,6 +72,7 @@ public class Configurar extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
+        AgregarP.setBackground(new java.awt.Color(153, 153, 255));
         AgregarP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         AgregarP.getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -197,6 +198,7 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(7, 8, 0, 12);
         AgregarP.getContentPane().add(jTextField6, gridBagConstraints);
 
+        jButton3.setBackground(java.awt.SystemColor.inactiveCaption);
         jButton3.setText("Guardar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +212,8 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 22, 19, 12);
         AgregarP.getContentPane().add(jButton3, gridBagConstraints);
 
+        setBackground(new java.awt.Color(153, 153, 255));
+        setToolTipText("");
         setPreferredSize(new java.awt.Dimension(1020, 720));
         setRequestFocusEnabled(false);
         setLayout(new java.awt.GridBagLayout());
@@ -223,6 +227,7 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(39, 70, 0, 0);
         add(jLabel2, gridBagConstraints);
 
+        jComboBox1.setBackground(java.awt.SystemColor.inactiveCaption);
         jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         jComboBox1.setModel(new DefaultComboBoxModel(initialDataConfig.getCategorias().toArray(new CategoriaModel[initialDataConfig.getCategorias().size()])));
         jComboBox1.setSelectedIndex(0);
@@ -241,6 +246,8 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(36, 18, 0, 0);
         add(jComboBox1, gridBagConstraints);
 
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setBackground(java.awt.SystemColor.inactiveCaption);
         jTable1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
         ArrayList<PreguntaModel> preguntas = initialDataConfig.getPreguntas();
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -301,6 +308,7 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(38, 29, 13, 29);
         add(jScrollPane1, gridBagConstraints);
 
+        jButton1.setBackground(java.awt.SystemColor.inactiveCaption);
         jButton1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 14)); // NOI18N
         jButton1.setText("Agregar Pregunta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -317,7 +325,7 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(36, 313, 0, 0);
         add(jButton1, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 14)); // NOI18N
         jLabel1.setText("Seleccione el nivel de dificultad y agregue 5 o más preguntas por nivel");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -327,6 +335,7 @@ public class Configurar extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(42, 29, 0, 0);
         add(jLabel1, gridBagConstraints);
 
+        jButton2.setBackground(java.awt.SystemColor.inactiveCaption);
         jButton2.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 14)); // NOI18N
         jButton2.setText("Atrás");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
